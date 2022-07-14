@@ -55,10 +55,19 @@ int main(int argc,char**argv) {
 
     //printf("%s : %d",numberToString(numb1*numb2).str,numberToString(numb1*numb2).length);
 
-    
-    if (isPalindrome(numberToString(numb1*numb2))) {
-        printf("%d is a Palindrome!",numb1*numb2);
+    for (numb1=999;numb1>0;numb1--) {
+        for (numb2=999;numb2>0;numb2--) {
+            if (isPalindrome(numberToString(numb1*numb2))) {
+                printf("%d is a Palindrome!\n",numb1*numb2);
+                if (maxPal<numb1*numb2) {
+                    maxPal=numb1*numb2;
+                    printf("  New MAX set to %d\n",maxPal);
+                }
+            }
+        }
     }
+
+    printf("\n\nThe maximum palindrome is %d\n",maxPal);
 
     return 0;
 }
