@@ -2,25 +2,30 @@
 #include "utils.h"
 
 /*
-The sum of the squares of the first ten natural numbers is,
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 
-The square of the sum of the first ten natural numbers is,
+What is the 10 001st prime number?
 
-Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is .
-
-Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
-
-https://projecteuler.net/problem=6
+https://projecteuler.net/problem=7
 */
 int main(int argc,char**argv) {
-    int sumOfSquares=0,squareOfSum=0;
-    for (int i=0;i<=100;i++) {
-        sumOfSquares+=i*i;
+    FILE*f=fopen("archives/primegenerator/primes","r");
+    int count=0;
+    while (count!=10000) {
+        int c = fgetc(f);
+        if (c==',') {
+            count++;
+            printf("Found comma #%d\n",count);
+        }
     }
-    for (int i=0;i<=100;i++) {
-        squareOfSum+=i;
+    int c;
+    long numb=0;
+    while ((c=fgetc(f))!=',') {
+        printf("Read %c\n",c);
+        numb*=10;
+        numb+=c-'0';
     }
-    squareOfSum*=squareOfSum;
-    printf("%d - %d = %d",squareOfSum,sumOfSquares,squareOfSum-sumOfSquares);
+    fclose(f);
+    printf("%ld",numb);
     return 0;
 }
