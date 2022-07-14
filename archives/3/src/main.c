@@ -32,6 +32,7 @@ int main(int argc,char**argv) {
             }
             if (primeVal%primes[i]==0) {
                 isPrime=0;
+                break;
             }
         }
         if (isPrime) {
