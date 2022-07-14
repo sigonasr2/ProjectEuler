@@ -9,7 +9,12 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 https://projecteuler.net/problem=4
 */
 
-char*numberToString(int numb) {
+struct String{
+    int length;
+    char*str;
+};
+
+struct String numberToString(int numb) {
     int placeValues=0;
     int tempNumb=numb;
     while (tempNumb>0) {
@@ -23,7 +28,8 @@ char*numberToString(int numb) {
         finalStr[marker--]='0'+(tempNumb%10);
         tempNumb/=10;
     }
-    return finalStr;
+    struct String str={placeValues,finalStr};
+    return str;
 }
 
 int main(int argc,char**argv) {
@@ -31,7 +37,12 @@ int main(int argc,char**argv) {
     int numb2=999;
     int maxPal=0;
 
-    printf("S:%s",numberToString(numb1));
+    printf("%s : %d",numberToString(numb1*numb2).str,numberToString(numb1*numb2).length);
+
+    /*
+    if (isPalindrome(numberToString(numb1*numb2))) {
+        printf("%d is a Palindrome!",numb1*numb2);
+    }*/
 
     return 0;
 }
