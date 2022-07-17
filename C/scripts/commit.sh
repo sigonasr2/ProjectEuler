@@ -1,7 +1,6 @@
 #Adds a commit message and pushes project to github repository.
 #C
 COMMIT_MESSAGE="$*"
-echo $*
 FIRST_LINE=true
 while IFS= read -r line
 do
