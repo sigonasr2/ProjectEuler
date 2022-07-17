@@ -1,5 +1,6 @@
 #Archives the current project under the applicable program name.
 #C
+echo $#
 if [[ "$#" -gt 1 ]];
 then
     mkdir archives/$1
