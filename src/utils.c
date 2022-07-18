@@ -23,7 +23,7 @@ struct String add(struct String numb1, struct String numb2){
             }
         }
     } else {
-        for (int offset=0;offset<numb1.length;offset++) {
+        for (int offset=0;offset<numb2.length;offset++) {
             str = realloc(str,++digitCount);
             //printf("Digit count is now %d\n",digitCount);
             if (numb1.length>offset) {
