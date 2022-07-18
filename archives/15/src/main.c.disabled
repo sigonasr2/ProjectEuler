@@ -7,7 +7,7 @@
     How many such routes are there through a 20×20 grid?
 
 
-    https://projecteuler.net/problem=14
+    https://projecteuler.net/problem=15
 */
 
 void move(int x,int y,long*pathCount) {
