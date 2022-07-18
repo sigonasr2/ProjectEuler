@@ -52,3 +52,21 @@ struct String add(struct String numb1, struct String numb2){
     struct String newStr = {digitCount,str};
     return newStr;
 }
+
+void printLongDoubleArr(int a,int b,long doubleArr[a][b]) {
+    for (int i=0;i<a;i++) {
+        for (int j=0;j<b;j++) {
+            printf("%ld\t",doubleArr[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void printIntDoubleArr(int a,int b,int doubleArr[a][b]) {
+    for (int i=0;i<a;i++) {
+        for (int j=0;j<b;j++) {
+            printf("%d\t",doubleArr[i][j]);
+        }
+        printf("\n");
+    }
+}
