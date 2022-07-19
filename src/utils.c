@@ -5,7 +5,7 @@
 struct String mult(struct String numb1, struct String numb2) {
     struct String n1 = numb1;
     struct String n2 = numb2;
-    byte carryover = -1;
+    byte carryover = 0;
     if (numb2.length>numb1.length) {
         n1=numb2;
         n2=numb1;
@@ -16,13 +16,40 @@ struct String mult(struct String numb1, struct String numb2) {
             addends[i][j]=0;
         }
     }
-    printIntDoubleArr(n2.length,n1.length+1,addends);
     for (int i=n2.length-1;i>=0;i--) {
-        
+        carryover=0;
+        for (int j=n1.length-1;j>=0;j--) {
+            int mult = (n1.str[j]-'0')*(n2.str[i]-'0')+((carryover!=0)?carryover:0);
+            //printf("  %d/%d\n",mult,carryover);
+            carryover=0;
+            if (mult>=10) {
+                carryover=mult/10;
+                mult=mult%10;
+            }
+            addends[i][j+1]=mult;
+        }
+        if (carryover>0) {
+            addends[i][0]=carryover;
+        }
     }
+    struct String sum = {1,"0"};
+    for (int i=0;i<n2.length;i++) {
+        char val[n1.length+1+i];
+        for (int j=0;j<n1.length+1+i;j++) {
+            val[j]='0';
+        }
+        for (int j=0;j<n1.length+1;j++) {
+            val[j]=addends[i][j]+'0';
+        }
+        sum=add((struct String){n1.length+1+i,val},sum);
+        printf("%s\n",sum.str);
+    }
+    printf("%s",sum.str);
+    //printIntDoubleArr(n2.length,n1.length+1,addends);
 }
 
 struct String add(struct String numb1, struct String numb2){
+    printf("%s %s\n",numb1.str,numb2.str);
     byte carryover=0;
     int digitCount=0;
     char*str = malloc(0);
@@ -39,7 +66,7 @@ struct String add(struct String numb1, struct String numb2){
                 }
                 str[offset]=sum+'0';
             } else {
-                str[offset]=numb1.str[numb1.length-offset-1];
+                str[offset]=numb1.str[numb1.length-offset-1]+((carryover>0)?carryover--:0);
             }
         }
     } else {
@@ -55,7 +82,7 @@ struct String add(struct String numb1, struct String numb2){
                 }
                 str[offset]=sum+'0';
             } else {
-                str[offset]=numb2.str[numb2.length-offset-1];
+                str[offset]=numb2.str[numb2.length-offset-1]+((carryover>0)?carryover--:0);
             }
         }
     }
