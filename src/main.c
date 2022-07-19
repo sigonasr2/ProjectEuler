@@ -24,9 +24,9 @@ int main(int argc,char**argv) {
         }
     }
     fseek(file,0,0);
-    const char*names[nameCount];
+    char*names[nameCount];
+    int currentCount=0; 
     while (!feof(file)) {
-        int currentCount=0;
         if (fgetc(file)=='"') {
             //Start reading the name.
             char*newName=malloc(1);
@@ -37,11 +37,12 @@ int main(int argc,char**argv) {
                 newName[length-2]=c;
                 newName[length-1]='\0';
             }
+            //printf("%s\n",newName);
             names[currentCount++]=newName;
         }
     }
     for (int i=0;i<nameCount;i++) {
-        printf("%s\n",(char*)((*names)[i]));
+        printf("%s\n",names[i]);
     }
     return 0;
 }
