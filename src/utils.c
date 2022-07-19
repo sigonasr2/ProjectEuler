@@ -20,18 +20,19 @@ struct String mult(struct String numb1, struct String numb2) {
         carryover=0;
         for (int j=n1.length-1;j>=0;j--) {
             int mult = (n1.str[j]-'0')*(n2.str[i]-'0')+((carryover!=0)?carryover:0);
-            //printf("  %d/%d\n",mult,carryover);
+            printf("  %d/%d\n",mult,carryover);
             carryover=0;
             if (mult>=10) {
                 carryover=mult/10;
                 mult=mult%10;
             }
-            addends[i][j+1]=mult;
+            addends[(n2.length-1)-i][j+1]=mult;
         }
         if (carryover>0) {
-            addends[i][0]=carryover;
+            addends[(n2.length-1)-i][0]=carryover;
         }
     }
+    printIntDoubleArr(n2.length,n1.length+1,addends);
     struct String sum = {1,"0"};
     for (int i=0;i<n2.length;i++) {
         char val[n1.length+1+i];
@@ -42,14 +43,14 @@ struct String mult(struct String numb1, struct String numb2) {
             val[j]=addends[i][j]+'0';
         }
         sum=add((struct String){n1.length+1+i,val},sum);
-        printf("%s\n",sum.str);
+        //printf("%s\n",sum.str);
     }
-    printf("%s",sum.str);
-    //printIntDoubleArr(n2.length,n1.length+1,addends);
+    //printf("%s",sum.str);
+    return sum;
 }
 
 struct String add(struct String numb1, struct String numb2){
-    printf("%s %s\n",numb1.str,numb2.str);
+    //printf("%s %s\n",numb1.str,numb2.str);
     byte carryover=0;
     int digitCount=0;
     char*str = malloc(0);

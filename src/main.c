@@ -15,7 +15,7 @@
 int main(int argc,char**argv) {
     struct String factorialSum = {1,"0"};
     int counter=1;
-    mult((struct String){3,"575"},(struct String){4,"4200"});
+    printf("%s",mult((struct String){14,"85018361849301"},(struct String){7,"1849204"}).str);
     while (counter<=100) {
         counter++;
     }
