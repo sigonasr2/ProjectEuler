@@ -3,49 +3,39 @@
 #include <stdlib.h>
 
 /*
-    Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
-    If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+    Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
 
-    For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+    For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
 
-    Evaluate the sum of all the amicable numbers under 10000.
+    What is the total of all the name scores in the file?
 
-    https://projecteuler.net/problem=21
+    https://projecteuler.net/problem=22
 */
 
 int main(int argc,char**argv) {
-    int counter=1;
-    long totalSum=0;
-    while (counter<10000) {
-        //printf("Factor sum of %d: 1,",counter);
-        int factorSum=1;
-        int max=counter/2;
-        for (int i=2;i<max;i++) {
-            if (counter%i==0) {
-                factorSum+=i;
-                if (i!=(counter/i)) {
-                    factorSum+=counter/i;
-                }
-                max=counter/i;
-                //printf("%d,%d,",i,counter/i);
+    FILE*file = fopen("p022_names.txt","r");
+    printf("%s\n",add(BigNumber(38195431534281091050778),BigNumber(381918429378)).str);
+    /*int pointer=0;
+    int nameCount=0;
+    char**names = malloc(sizeof(char*));
+    while (!feof(file)) {
+        if (fgetc(file)=='"') {
+            //Start reading the name.
+            char*newName=malloc(1);
+            char c=' ';
+            int length=0;
+            while ((c=fgetc(file))!='"') {
+                newName=realloc(newName,++length);
+                newName[length-2]=c;
+                newName[length-1]='\0';
             }
+            nameCount++;
+            names=realloc(names,sizeof(char*)*nameCount);
+            names[nameCount-1]=newName;
         }
-        //printf("\n");
-        int factorSum2=1;
-        max=factorSum/2;
-        for (int i=2;i<max;i++) {
-            if (factorSum%i==0) {
-                factorSum2+=i;
-                factorSum2+=factorSum/i;
-                max=factorSum/i;
-            }
-        }
-        if (factorSum!=factorSum2&&counter==factorSum2) {
-            printf("%d\n",counter);
-            totalSum+=counter;
-        }
-        counter++;
     }
-    printf("\n\nAmicable Number sum: %ld",totalSum);
+    for (int i=0;i<nameCount;i++) {
+        printf("%s\n",names[i]);
+    }*/
     return 0;
 }

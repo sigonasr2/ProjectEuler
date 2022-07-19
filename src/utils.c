@@ -61,7 +61,8 @@ struct String add(struct String numb1, struct String numb2){
     //printf("%s %s\n",numb1.str,numb2.str);
     byte carryover=0;
     int digitCount=0;
-    char*str = malloc(0);
+    char*str = malloc(1);
+    //str[0]='\0';
     if (numb1.length>=numb2.length) {
         for (int offset=0;offset<numb1.length;offset++) {
             str = realloc(str,++digitCount);
@@ -77,6 +78,7 @@ struct String add(struct String numb1, struct String numb2){
             } else {
                 str[offset]=numb1.str[numb1.length-offset-1]+((carryover>0)?carryover--:0);
             }
+            //str[offset+1]='\0';
         }
     } else {
         for (int offset=0;offset<numb2.length;offset++) {
@@ -93,11 +95,13 @@ struct String add(struct String numb1, struct String numb2){
             } else {
                 str[offset]=numb2.str[numb2.length-offset-1]+((carryover>0)?carryover--:0);
             }
+            //str[offset+1]='\0';
         }
     }
     if (carryover>0) {
         str = realloc(str,++digitCount);
         str[digitCount-1]='1';
+        //str[digitCount]='\0';
     }
     for (int i=0;i<digitCount/2;i++) {
         char c = str[i];
@@ -105,6 +109,8 @@ struct String add(struct String numb1, struct String numb2){
         str[digitCount-i-1]=c;
         str[i]=c2;
     }
+    str = realloc(str,digitCount+1);
+    str[digitCount]='\0';
     struct String newStr = {digitCount,str};
     return newStr;
 }
@@ -125,4 +131,10 @@ void printIntDoubleArr(int a,int b,int doubleArr[a][b]) {
         }
         printf("\n");
     }
+}
+
+struct String createBigNumber(char*numb) {
+    int marker=0;
+    while (numb[marker++]!='\0');
+    return (struct String){marker-1,numb};
 }
