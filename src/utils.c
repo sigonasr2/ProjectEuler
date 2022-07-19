@@ -2,6 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct String mult(struct String numb1, struct String numb2) {
+    struct String n1 = numb1;
+    struct String n2 = numb2;
+    byte carryover = -1;
+    if (numb2.length>numb1.length) {
+        n1=numb2;
+        n2=numb1;
+    }
+    int addends[n2.length][n1.length+1];
+    for (int i=0;i<n2.length;i++) {
+        for (int j=0;j<n1.length+1;j++) {
+            addends[i][j]=0;
+        }
+    }
+    printIntDoubleArr(n2.length,n1.length+1,addends);
+    for (int i=n2.length-1;i>=0;i--) {
+        
+    }
+}
+
 struct String add(struct String numb1, struct String numb2){
     byte carryover=0;
     int digitCount=0;
