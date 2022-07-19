@@ -14,28 +14,34 @@
 
 int main(int argc,char**argv) {
     FILE*file = fopen("p022_names.txt","r");
-    printf("%s\n",add(BigNumber(38195431534281091050778),BigNumber(381918429378)).str);
-    /*int pointer=0;
+    int pointer=0;
     int nameCount=0;
-    char**names = malloc(sizeof(char*));
     while (!feof(file)) {
+        if (fgetc(file)=='"') {
+            while (fgetc(file)!='"') {
+            }
+            nameCount++;
+        }
+    }
+    fseek(file,0,0);
+    const char*names[nameCount];
+    while (!feof(file)) {
+        int currentCount=0;
         if (fgetc(file)=='"') {
             //Start reading the name.
             char*newName=malloc(1);
             char c=' ';
-            int length=0;
+            int length=1;
             while ((c=fgetc(file))!='"') {
                 newName=realloc(newName,++length);
                 newName[length-2]=c;
                 newName[length-1]='\0';
             }
-            nameCount++;
-            names=realloc(names,sizeof(char*)*nameCount);
-            names[nameCount-1]=newName;
+            names[currentCount++]=newName;
         }
     }
     for (int i=0;i<nameCount;i++) {
-        printf("%s\n",names[i]);
-    }*/
+        printf("%s\n",(char*)((*names)[i]));
+    }
     return 0;
 }
