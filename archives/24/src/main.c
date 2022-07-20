@@ -51,9 +51,6 @@ int factorial(int numb) {
 
 int main(int argc,char**argv) {
 
-    //For permutations, we know that there are a total of N! permutations.
-    //  Which means each individual set starts at N!/N. So we can skip ahead some permutations.
-    //  For 10 numbers, we get 362,880 values per permutation set. So 1000000/362880 = 2. So we'll start at permutation two.
     int setPermutationCount=factorial(10)/10;
     int permutationCount=(1000000/setPermutationCount)*setPermutationCount;
     int digits[10]={2,0,1,3,4,5,6,7,8,9};
@@ -61,11 +58,11 @@ int main(int argc,char**argv) {
         incrementDigit(digits);
         if (allUniqueDigits(digits)) {
             permutationCount++;
-            printf("%d:",permutationCount);
+            /*printf("%d:",permutationCount);
             for (int i=0;i<10;i++) {
                 printf(" %d ",digits[i]);
             }
-            printf("\n");
+            printf("\n");*/
         }
     }
 
