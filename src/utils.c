@@ -171,3 +171,20 @@ boolean isFactor(int*factorList,int numb) {
     }
     return false;
 }
+
+struct String BigPow(int numb1, int numb2) {
+    struct String sum = BigNumber(1);
+    char*newStr = malloc(0);
+    int strLength=0;
+    while (numb1>0) {
+        newStr=realloc(newStr,++strLength);
+        newStr[strLength-1]=(numb1%10)+'0';
+        numb1/=10;
+    }
+    struct String bigNumb2 = (struct String){strLength,newStr};
+    for (int i=0;i<numb2;i++) {
+        sum=mult(sum,bigNumb2);
+    }
+    free(newStr);
+    return sum;
+}
