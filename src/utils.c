@@ -43,17 +43,17 @@ struct String mult(struct String numb1, struct String numb2) {
             val[j]=addends[i][j]+'0';
         }
         sum=add((struct String){n1.length+1+i,val},sum);
-        //printf("%s\n",sum.str);
+        printf("\nAA:%s",sum.str);
     }
     if (sum.str[0]=='0') {
-        char*newStr=malloc(sum.length-1);
-        for (int i=1;i<sum.length;i++) {
+        char*newStr=malloc(sum.length);
+        for (int i=1;i<sum.length+1;i++) {
             newStr[i-1]=sum.str[i];
         }
         free(sum.str);
         sum=(struct String){sum.length-1,newStr};
     }
-    //printf("%s",sum.str);
+    printf("\nA:%s",sum.str);
     return sum;
 }
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "utils.h"
+#include <stdlib.h>
 
 /*
     Consider all integer combinations of ab for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
@@ -18,6 +19,14 @@
 */
 
 int main(int argc,char**argv) {
-    printf("%s",BigPow(3,7).str);
+    struct String*numbs=malloc(sizeof(struct String)*0);
+    int arrSize=0;
+    for (int a=2;a<=5;a++) {
+        for (int b=2;b<=20;b++) {
+            numbs=realloc(numbs,sizeof(struct String)*++arrSize);
+            numbs[arrSize-1]=BigPow(a,b);
+            printf("\n%s\n",numbs[arrSize-1].str);
+        }
+    }
     return 0;
 }
