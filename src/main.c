@@ -1,49 +1,108 @@
 #include <stdio.h>
 #include "utils.h"
-#include <math.h>
 
 /*
-    Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
+    In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation:
 
-        1634 = 14 + 64 + 34 + 44
-        8208 = 84 + 24 + 04 + 84
-        9474 = 94 + 44 + 74 + 44
+        1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).
 
-    As 1 = 14 is not a sum it is not included.
+    It is possible to make £2 in the following way:
 
-    The sum of these numbers is 1634 + 8208 + 9474 = 19316.
+        1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 
-    Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+    How many different ways can £2 be made using any number of coins?
 
 
-    https://projecteuler.net/problem=30
+    https://projecteuler.net/problem=31
 */
 
-int main(int argc,char**argv) {
-    int counter=0;
-    int currentDigit=10;
-    long digitSum=0;
-    while (counter<10000000) {
-        int tempNumb=currentDigit;
-        digitSum=0;
-        long val=0;
-        while (tempNumb>0) {
-            int digit=tempNumb%10;
-            tempNumb/=10;
-            val=(long)pow(digit,5);
-            digitSum+=val;
-            if (digitSum>currentDigit) {
-                goto next;
-            }
-        }
-        if (digitSum==currentDigit) {
-            printf("%d has a digit sum that equals its number!\n",currentDigit);
-        }
-        next:
-        currentDigit++;
-        counter++;
-    }
+enum Currency{
+    pence1,
+    pence2,
+    pence5,
+    pence10,
+    pence20,
+    pence50,
+    pound1, //100 pences
+    pound2, //200 pences
+};
 
+int combinationCount(enum Currency cur) {
+    switch (cur) {
+        case pence1:{
+            return 1;
+        }break;
+        case pence2:{
+            return 2; //2
+        }break;
+        case pence5:{
+            return 5; //3
+        }break;
+        case pence10:{
+            return 10; //4
+        }break;
+        case pence20:{
+            return 20;
+        }break;
+        case pence50:{
+            return 50;
+        }break;
+        case pound1:{
+            return 100;
+        }break;
+        case pound2:{
+            return 200;
+        }break;
+    }
+}
+
+int getValue(enum Currency cur) {
+    switch (cur) {
+        case pence1:{
+            return 1;
+        }break;
+        case pence2:{
+            return 2;
+        }break;
+        case pence5:{
+            return 5;
+        }break;
+        case pence10:{
+            return 10;
+        }break;
+        case pence20:{
+            return 20;
+        }break;
+        case pence50:{
+            return 50;
+        }break;
+        case pound1:{
+            return 100;
+        }break;
+        case pound2:{
+            return 200;
+        }break;
+    }
+}
+
+int main(int argc,char**argv) {
+    int currencyAmts[8] = {200};
+    int combinationCount=0;
+    int maxCurrencyVal=200;
+    int currentMarker=0;
+    int highestMarker=1;
+
+    while (true) {
+        printf("Coin amts: ");
+        for (int i=0;i<8;i++) {
+            printf("%d ",currencyAmts[i]);
+        }
+        printf("\n");
+        while (true) {
+            currencyAmts[currentMarker]
+        }
+        
+    }
     
     return 0;
 }
